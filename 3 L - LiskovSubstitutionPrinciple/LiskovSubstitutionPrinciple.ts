@@ -3,35 +3,49 @@
 // Em outras palavras, se uma classe base é esperada em um determinado contexto,
 // Suas subclasses devem poder substituir a classe base sem causar problemas.
 
-interface Movie {
-  play(): void;
-}
-
-interface AudioControl {
-  
-  increaseVolume(): void;
-}
-
-class CaptainAmerican implements Movie, AudioControl {
-
-  name: string;
-  category: string;
-
-  constructor() {}
-
-  public increaseVolume(): void {
-    throw new Error("Method not implemented.");
+class Movie {
+  play(): void {
+    console.log("Playing movie");
   }
 
-  play(): void {}
+  increaseVolume(): void {
+    console.log("Increasing volume");
+  }
 }
 
-class ModernsTimes implements Movie {
+class TheLionKing extends Movie {
+  name: string;
+  category: string;
+}
 
+class ModernsTimes extends Movie {
   name: string;
   category: string;
 
+  constructor() {
+    super();
+    //Errado
+    this.increaseVolume();
+  }
+}
+
+///////////////////////////////////////////////
+
+///Correto
+let movie: Movie = new TheLionKing();
+movie.play();
+movie.increaseVolume();
+
+class MovieWithoutIncreaseVolume {
   play(): void {
-    throw new Error("Method not implemented.");
+    console.log("Playing movie");
+  }
+}
+
+class ModernsTimes2 extends MovieWithoutIncreaseVolume {}
+
+class TheLionKing2 extends Movie {
+  constructor() {
+    super();
   }
 }

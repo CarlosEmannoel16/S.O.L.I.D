@@ -21,7 +21,7 @@ class Forma {
 //Agora, podemos adicionar novas formas estendendo a classe Forma sem modificar seu código fonte.
 // Isso mantém a classe aberta para extensão, mas fechada para modificação.
 
-class FormaCorreta {
+class FormulaCircle {
   constructor() {}
 
   calculateArea() {
@@ -29,10 +29,24 @@ class FormaCorreta {
   }
 }
 
-class square extends FormaCorreta {
+class FormulaSquare {
+  constructor() {}
+
+  calculateArea() {
+    // calculate area
+  }
+}
+
+class square extends FormulaSquare {
+  constructor() {
+    super();
+  }
   calculateArea(): void {}
 }
 
-class circle extends FormaCorreta {
+class circle extends FormulaCircle {
+  constructor() {
+    super();
+  }
   calculateArea(): void {}
 }
